@@ -17,6 +17,11 @@ export const menuItems: MenuItem[]=[
     component: 'SwitchScreen'
   }, 
   {
+    name: 'Alerts',
+    icon: 'alert-circle-outline', 
+    component: 'AlertScreen'
+  },
+  {
     name: 'TextInputs',
     icon: 'document-text-outline', 
     component: 'TextInputScreen'
@@ -45,5 +50,10 @@ export const menuItems: MenuItem[]=[
     name: 'Slides',
     icon: 'flower-outline', 
     component: 'SlidesScreen'
+  }, 
+  {
+    name: 'Themes',
+    icon: 'flask-outline', 
+    component: 'ChangeThemeScreen'
   }
 ]
