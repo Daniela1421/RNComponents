@@ -1,11 +1,14 @@
-import React, {useState} from 'react'
+import React, { useContext } from 'react'
 import { View, TextInput, StyleSheet, KeyboardAvoidingView, Keyboard, Platform, ScrollView, TouchableWithoutFeedback, Text } from 'react-native';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { styles } from '../theme/appTheme';
 import { useForm } from '../hooks/useForm';
 import { CustomSwitch } from '../components/CustomSwitch';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 export const TextInputScreen = () => {
+  const { theme: {colors} } = useContext(ThemeContext)
+
   const {form, onChange, isSubscribed} = useForm({
     name: '', 
     email: '', 
@@ -23,20 +26,30 @@ export const TextInputScreen = () => {
             <HeaderTitle title='TextInputs'/>
 
             <TextInput
-              style={stylesScreen.inputStyle}
+              style={{
+                ...stylesScreen.inputStyle, 
+                borderColor: colors.border, 
+                color: colors.text
+              }}
               placeholder='Ingrese su nombre'
               autoCorrect={false}
               autoCapitalize='words'
               onChangeText={(value)=> onChange(value, 'name')}
+              placeholderTextColor={colors.text}
             />
             <TextInput
-              style={stylesScreen.inputStyle}
+              style={{
+                ...stylesScreen.inputStyle, 
+                borderColor: colors.border, 
+                color: colors.text
+              }}
               placeholder='Ingrese su email'
               autoCorrect={false}
               autoCapitalize='none'
               onChangeText={(value)=> onChange(value, 'email')}
               keyboardType='email-address'
               keyboardAppearance='dark'  //IOS
+              placeholderTextColor={colors.text}
             />
 
             <View style={stylesScreen.switchRow}>
@@ -48,10 +61,15 @@ export const TextInputScreen = () => {
             <HeaderTitle title={JSON.stringify(form, null, 3)}/>
 
             <TextInput
-              style={stylesScreen.inputStyle}
+              style={{
+                ...stylesScreen.inputStyle, 
+                borderColor: colors.border, 
+                color: colors.text
+              }}
               placeholder='Ingrese su teléfono'
               onChangeText={(value)=> onChange(value, 'phone')}
               keyboardType='phone-pad'
+              placeholderTextColor={colors.text}
             />
             
             <View style={{height: 100}}/>
@@ -65,8 +83,7 @@ export const TextInputScreen = () => {
 
 const stylesScreen = StyleSheet.create({
   inputStyle: {
-    borderWidth: 1, 
-    borderColor: 'rgba(0,0,0,0.3)',
+    borderWidth: 1,
     height: 50, 
     paddingHorizontal: 10, 
     borderRadius: 10, 
